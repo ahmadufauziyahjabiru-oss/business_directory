@@ -8,7 +8,7 @@
     <h3>Recently Added:</h3>
     <ul>
         {% for biz in businesses %}
-            <li><strong>{{ biz.name }}</strong> - {{ biz.category }} <br> 
+            <li><strong>{{ biz.get_styled_name }}</strong> - {{ biz.category }} <br> 
                 <small>Added: {{ biz.timestamp }}</small>
             </li>
         {% endfor %}

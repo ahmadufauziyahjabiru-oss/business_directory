@@ -42,7 +42,7 @@ href="{{ url_for('add_business') }} ">Add Business</a>
     <ul>
         {% for biz in businesses %}
             <li><strong>{{ biz.get_styled_name() }}</strong> - {{ biz.category }} <br> 
-                <small>Added: {{ biz.timestamp }}</small>
+                <small>Added on: {{ biz.timestamp }}</small>
             </li>
         {% endfor %}
     </ul>

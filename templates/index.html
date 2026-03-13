@@ -27,6 +27,15 @@ href="{{ url_for('add_business') }} ">Add Business</a>
     </div>
   {% endif %}
 {% endwith %}
+{% if businesses %}
+    <ul>
+        {% for biz in businesses %}
+            <li><strong>{{ biz.get_styled_name() }}</strong> - {{ biz.category }}</li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No businesses have been added to the directory yet.</p>
+{% endif %}
     <a href="/add">Add a New Business</a>
     <hr>
     <h3>Recently Added:</h3>

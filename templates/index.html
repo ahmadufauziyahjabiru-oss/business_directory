@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head><title>Local Business Directory</title></head>
+<body>
+    <h1>Local Businesses</h1>
+    <a href="/add">Add a New Business</a>
+    <hr>
+    <h3>Recently Added:</h3>
+    <ul>
+        {% for biz in businesses %}
+            <li><strong>{{ biz.name }}</strong> - {{ biz.category }} <br> 
+                <small>Added: {{ biz.timestamp }}</small>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

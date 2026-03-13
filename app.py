@@ -1,35 +1,32 @@
-from flask import Flask, render_template, request, redirect
-from models import Business
+from flask import Flask, render_template, request, redirect, url_for
+from models import Business # Importing your OOP class
 
 app = Flask(__name__)
 
-business_list = []
-recent_stack = []
+# This list will act as our STACK (Requirement)
+business_stack = []
 
-@app.route("/")
+@app.route('/')
 def home():
-    return render_template("home.html", businesses=business_list, recent=recent_stack)
+    # We pass the stack to the HTML. 
+    # To show 'Recently Added', we reverse it: [::-1]
+    recent_businesses = business_stack[::-1]
+    return render_template('index.html', businesses=recent_businesses)
 
-
-@app.route("/add", methods=["GET", "POST"])
+@app.route('/add', methods=['GET', 'POST'])
 def add_business():
-    if request.method == "POST":
-        name = request.form["name"]
-        location = request.form["location"]
+    if request.method == 'POST':
+        name = request.form.get('name')
+        category = request.form.get('category')
+        
+        # Requirement: Instantiate the Class (OOP)
+        new_biz = Business(name, category)
+        
+        # Requirement: Implement Stack (LIFO) behavior
+        business_stack.append(new_biz)
+        
+        return redirect(url_for('home'))
+    return render_template('add.html')
 
-        new_business = Business(name, location)
-
-        business_list.append(new_business)
-
-        recent_stack.append(new_business)
-
-        if len(recent_stack) > 5:
-            recent_stack.pop(0)
-
-        return redirect("/")
-
-    return render_template("add.html")
-
-
-if __name__ == "__main__":
+if __name__ == '__main__':
     app.run(debug=True)

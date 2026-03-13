@@ -1,36 +1,36 @@
-from flask import Flask, render_template, request, redirect, url_for, flash 
-from models import Business # Importing your OOP class
+from flask import Flask, render_template, request, redirect, url_for, flash
+from models import Business
 
-app = Flask(__name__):
-app.secret_key = 
-"secret_key_for_assignment"
+app = Flask(__name__)
+app.secret_key = 'secret_key_for_session'
 
-# This list will act as our STACK (Requirement)
+# This is our Stack (LIFO) to store businesses
 business_stack = []
-
-@app.route('/')
+# Home route to display all businesses in the stack
+# @app.route('/')
 def home():
-    # We pass the stack to the HTML. 
-    # To show 'Recently Added', we reverse it: [::-1]
-    recent_businesses = business_stack[::-1]
-    return render_template('index.html', businesses=recent_businesses)
-
+    return render_template('index.html', businesses=business_stack)
+# Route to handle adding new businesses (POST) or showing the form (GET)
 @app.route('/add', methods=['GET', 'POST'])
 def add_business():
     if request.method == 'POST':
+        # Logic to extract data and update the LIFO stack
+        # 1. Grab data from the form
         name = request.form.get('name')
         category = request.form.get('category')
         
-        # Requirement: Instantiate the Class (OOP)   
-        new_biz =
-    Business(name, category)
-        # Add this line here
-        flash (f "success! {name}has been added to the directory.")
-
-  # Requirement: Implement Stack (LIFO) behavior
+        # 2. Create the business object (OOP)
+        new_biz = Business(name, category)
+        
+        # 3. Add to the top of our stack (LIFO behavior)
         business_stack.insert(0, new_biz)
         
+        # 4. Show a success message
+        flash(f"Success! {name} has been added to the directory.")
+        
         return redirect(url_for('home'))
+    
+    # If it's a GET request, just show the form
     return render_template('add.html')
 
 if __name__ == '__main__':

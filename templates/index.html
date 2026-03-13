@@ -17,6 +17,7 @@ href="{{ url_for('add_business') }} ">Add Business</a>
 <hr>
 <body>
     <h1>Local Businesses</h1>
+    <p><strong>Total Businesses in Directory:</strong> {{ businesses length }}</p>
     {% with messages = get_flashed_messages() %}
   {% if messages %}
     <div style="background-color: #d4edda; color: #155724; padding: 10px; border-radius: 5px; margin-bottom: 15px;">

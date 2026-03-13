@@ -10,3 +10,6 @@ class Business:
     # [span_9](start_span)Requirement: A custom behavior method[span_9](end_span)
     def get_summary(self):
         return f"{self.name} ({self.category}) - Added on: {self.timestamp}"
+    # NEW behavior method
+   def get_styled_name(self):
+       return self.name.upper()

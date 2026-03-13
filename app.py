@@ -23,7 +23,7 @@ def add_business():
         new_biz = Business(name, category)
         
         # Requirement: Implement Stack (LIFO) behavior
-        business_stack.append(new_biz)
+        business_stack.insert(0, new_biz)
         
         return redirect(url_for('home'))
     return render_template('add.html')

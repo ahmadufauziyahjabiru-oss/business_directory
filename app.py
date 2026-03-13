@@ -24,7 +24,7 @@ def add_business():
         
         # 3. Add to the top of our stack (LIFO behavior)
         business_stack.insert(0, new_biz)
-        
+        # Inside your add_business function, right before the redirect:
         # 4. Show a success message
         flash(f"Success! {name} has been added to the directory.")
         

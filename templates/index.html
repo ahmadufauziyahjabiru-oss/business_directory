@@ -46,7 +46,13 @@ href="{{ url_for('add_business') }} ">Add Business</a>
             </li>
         {% endfor %}
     </ul>
-    <hr>
+    </ul>
+<form action="{{ url_for('clear_stack') }}" method="POST">
+    <button type="submit" style="background-color: #dc3545; color: white; border: none; padding: 5px 10px; cursor: pointer; margin-bottom: 10px;">
+        Empty Directory 🗑️
+    </button>
+</form>
+ <hr>
     <footer>
         <p>&copy; 2026 Local Business Directory | Created for pyhton Assignment</p>
     </footer>

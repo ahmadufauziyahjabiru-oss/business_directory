@@ -32,6 +32,9 @@ def add_business():
     
     # If it's a GET request, just show the form
     return render_template('add.html')
-
+@app.route('/clear', methods=['POST'])
+def clear_stack():
+    business_stack.clear()
+    return redirect(url_for('home'))
 if __name__ == '__main__':
     app.run(debug=True)

@@ -1,7 +1,9 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, flash 
 from models import Business # Importing your OOP class
 
-app = Flask(__name__)
+app = Flask(__name__):
+app.secret_key = 
+"secret_key_for_assignment"
 
 # This list will act as our STACK (Requirement)
 business_stack = []
@@ -19,10 +21,13 @@ def add_business():
         name = request.form.get('name')
         category = request.form.get('category')
         
-        # Requirement: Instantiate the Class (OOP)
-        new_biz = Business(name, category)
-        
-        # Requirement: Implement Stack (LIFO) behavior
+        # Requirement: Instantiate the Class (OOP)   
+        new_biz =
+    Business(name, category)
+        # Add this line here
+        flash (f "success! {name}has been added to the directory.")
+
+  # Requirement: Implement Stack (LIFO) behavior
         business_stack.insert(0, new_biz)
         
         return redirect(url_for('home'))

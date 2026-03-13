@@ -3,6 +3,15 @@
 <head><title>Local Business Directory</title></head>
 <body>
     <h1>Local Businesses</h1>
+    {% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <div style="background-color: #d4edda; color: #155724; padding: 10px; border-radius: 5px; margin-bottom: 15px;">
+      {% for message in messages %}
+        {{ message }}
+      {% endfor %}
+    </div>
+  {% endif %}
+{% endwith %}
     <a href="/add">Add a New Business</a>
     <hr>
     <h3>Recently Added:</h3>
